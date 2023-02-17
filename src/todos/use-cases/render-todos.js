@@ -9,14 +9,15 @@ let element;
  */
 export const renderTodos = ( elementId, todos )=> {
     if (!element)
-        element = document.querySelector('.todo-list');
+        element = document.querySelector(elementId);
     
     if (!element) throw new Error(`Element ${elementId} not faund`)
 
     element.innerHtml = '';
-    
-    todos.forEach(todo=>{
-        element.append(createTodoHTML(todo));
-    })
+    if (todos.length<=5)
+        todos.forEach(todo=>{
+            element.append(createTodoHTML(todo));
+        })
+    else element.append(createTodoHTML(todos[todos.length-1]));
     
 };

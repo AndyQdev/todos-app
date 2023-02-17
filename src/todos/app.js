@@ -3,7 +3,8 @@ import html from './app.html?raw'
 import { renderTodos } from './use-cases';
 
 const ElmenentIDs = {
-    todoList : 'todo-list'
+    todoList : '.todo-list',
+    NewTodoInput: '#new-todo-input'
 }
 
 /**
@@ -27,6 +28,20 @@ export const App =(elementid) =>{
     displayTodos();
     })();
  
+    //Referencias Html
+    const newDescriptionInput = document.querySelector( ElmenentIDs.NewTodoInput );
+
+    //listeners
+    newDescriptionInput.addEventListener('keyup', (event) =>{
+        if (event.keyCode !== 13) return; //cualquier tecla que se precione saldra, solo si es 13 continuara
+        
+        if (event.target.value.trim().length === 0) return; //trim elimina los espacios iniciales y finales
+
+        todoStore.addTodo( event.target.value );
+        displayTodos();
+        event.target.value = '';
+    })
+
 };
 
 
