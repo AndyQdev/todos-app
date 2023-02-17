@@ -7,7 +7,7 @@ let element;
  * @param {String} elementId 
  * @param {Array} todos 
  */
-export const renderTodos = ( elementId, todos )=> {
+export const renderTodos = ( elementId, todos=[] )=> {
     if (!element)
         element = document.querySelector(elementId);
     
@@ -19,5 +19,13 @@ export const renderTodos = ( elementId, todos )=> {
             element.append(createTodoHTML(todo));
         })
     else element.append(createTodoHTML(todos[todos.length-1]));
+    
+};
+
+export const renderTodos2 = (elementId, todos) => {    
+    //if (!element)
+        element = document.querySelector(`#${elementId}`);
+        console.log(element);
+    if (!element) throw new Error(`Element ${elementId} not faund`)
     
 };
